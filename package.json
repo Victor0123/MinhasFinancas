@@ -1,0 +1,10 @@
+{
+  "name": "minhasfinancas",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Rafael Silva dos Anjos <rafael.sanjos@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
+}

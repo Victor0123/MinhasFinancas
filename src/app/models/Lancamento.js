@@ -4,7 +4,7 @@ class Lancamento extends Model {
   static init(sequelize) {
     super.init(
       {
-        data: Sequelize.DATE,
+        data: Sequelize.STRING,
         valor: Sequelize.DECIMAL,
         descricao: Sequelize.STRING,
         conta: Sequelize.STRING,

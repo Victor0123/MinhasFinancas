@@ -4,6 +4,8 @@ import LancamentoController from './app/controllers/LancamentoController';
 
 const routes = new Router();
 
-routes.post('/lancamentos', LancamentoController.store);
+routes.post('/lancamento', LancamentoController.store);
+
+routes.get('/lancamentos', LancamentoController.index);
 
 export default routes;

@@ -28,8 +28,39 @@ class LancamentoController {
       },
       attributes: ['id', 'data', 'valor', 'descricao', 'conta', 'tipo'],
     });
+    //Encontra as contas unicas na lista de lancamentos
+    const contas = new Set()
+    lancamentos.forEach((el) => {
+        contas.add(el.conta)
+      }
+    );
 
-    return res.json(lancamentos);
+    //Constroi os totalizadores
+    //Filter - filtra os lancamentos por conta
+    //Reduce - soma todos os lancamentos filtrados por conta
+    const totalizadores = []
+    contas.forEach((conta) => {
+      const valor = lancamentos
+      .filter((el) => el.conta === conta)
+      .reduce(function(anterior, elem ) {
+
+        var valor = parseFloat(elem.valor);
+        if(elem.tipo === "D"){
+          valor = valor * -1
+        }
+        return anterior + valor;
+      }, 0);
+      //constroi um novo objeto
+      totalizadores.push({ conta: conta,valor: valor });
+    });
+
+    //constroi o objeto de retorno final
+    const retorno = {
+      "Totalizadores" : totalizadores,
+      "Lancamentos" : lancamentos
+    }
+
+    return res.json(retorno);
   }
 }
 

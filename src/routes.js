@@ -6,6 +6,6 @@ const routes = new Router();
 
 routes.post('/lancamento', LancamentoController.store);
 
-routes.get('/lancamentos', LancamentoController.index);
+routes.get('/lancamentos/:data', LancamentoController.index);
 
 export default routes;

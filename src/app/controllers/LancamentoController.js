@@ -1,3 +1,4 @@
+/* eslint-disable radix */
 import { Op } from 'sequelize';
 import Lancamento from '../models/Lancamento';
 
@@ -9,10 +10,20 @@ class LancamentoController {
   }
 
   async index(req, res) {
+    const p = req.params.data.split('-');
+    const ano = parseInt(p[0]);
+    const mes = parseInt(p[1]) - 1;
+    const datainicial = new Date(ano, mes, 1);
+    const datafinal = new Date(
+      datainicial.getFullYear(),
+      datainicial.getMonth() + 1,
+      0
+    );
+
     const lancamentos = await Lancamento.findAll({
       where: {
-        date: {
-          [Op.between]: [new Date('2020 Apr 01'), new Date('2020 Apr 30')],
+        data: {
+          [Op.between]: [datainicial, datafinal],
         },
       },
       attributes: ['id', 'data', 'valor', 'descricao', 'conta', 'tipo'],

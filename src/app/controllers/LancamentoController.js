@@ -47,9 +47,22 @@ class LancamentoController {
           }
           return anterior + valor;
         }, 0);
+
       // constroi um novo objeto
       totalizadores.push({ conta, valor });
     });
+
+    const saldo = totalizadores
+      .reduce((anterior, elem) => {
+        let valor = parseFloat(elem.valor);
+        return anterior + valor
+      }, 0);
+
+    totalizadores.push(
+      {
+        conta: 'saldo',
+        valor: saldo,
+      });
 
     // constroi o objeto de retorno final
     const retorno = {

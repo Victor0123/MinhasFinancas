@@ -60,7 +60,7 @@ class LancamentoController {
 
     totalizadores.push(
       {
-        conta: 'saldo',
+        conta: 'Saldo',
         valor: saldo,
       });
 

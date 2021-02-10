@@ -1,9 +1,30 @@
 import { Op } from 'sequelize';
+import * as Yup from 'yup';
 import Lancamento from '../models/Lancamento';
 
 class LancamentoController {
   async store(req, res) {
-    const lancamento = await Lancamento.create(req.body);
+    const schema = Yup.object().shape({
+      data: Yup.date().required(),
+      valor: Yup.string().required(),
+      descricao: Yup.string().required(),
+      conta: Yup.string().required(),
+      tipo: Yup.string().required(),
+    });
+    if (!(await schema.isValid(req.body))) {
+      return res.status(400).json({ error: 'Falha na Validação.' });
+    }
+
+    const { data, valor, descricao, conta, tipo } = req.body;
+
+    const lancamento = await Lancamento.create({
+      data,
+      valor,
+      descricao,
+      conta,
+      tipo,
+      user_id: req.userId,
+    });
 
     return res.json(lancamento);
   }
@@ -21,6 +42,7 @@ class LancamentoController {
 
     const lancamentos = await Lancamento.findAll({
       where: {
+        user_id: req.userId,
         data: {
           [Op.between]: [datainicial, datafinal],
         },

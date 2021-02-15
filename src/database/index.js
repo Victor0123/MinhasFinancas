@@ -3,7 +3,7 @@ import Sequelize from 'sequelize';
 import User from '../app/models/User.js';
 import Lancamento from '../app/models/Lancamento.js';
 
-const databaseConfig = require('../config/database.js');
+import databaseConfig from '../config/database.js';
 
 const models = [Lancamento, User];
 

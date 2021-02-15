@@ -1,13 +1,11 @@
 {
   "name": "minhasfinancas",
   "version": "1.0.0",
-  "type": "module",
   "main": "src/server.js",
   "author": "Victor André Rossini de Souza <victor.rossini01@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon",
-    "start": "node src/server.js"
+    "dev": "nodemon"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

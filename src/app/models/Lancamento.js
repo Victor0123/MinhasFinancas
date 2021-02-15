@@ -1,5 +1,5 @@
-import Sequelize, { pkg } from 'sequelize';
-const { Model } = pkg
+import Sequelize from 'sequelize';
+const { Model } = Sequelize
 
 
 class Lancamento extends Model {

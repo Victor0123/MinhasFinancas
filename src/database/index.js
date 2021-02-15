@@ -1,9 +1,9 @@
 import Sequelize from 'sequelize';
 
-import User from '../app/models/User';
-import Lancamento from '../app/models/Lancamento';
+import User from '../app/models/User.js';
+import Lancamento from '../app/models/Lancamento.js';
 
-import databaseConfig from '../config/database';
+import databaseConfig from '../config/database.js';
 
 const models = [Lancamento, User];
 

@@ -1,10 +1,10 @@
 import { Router } from 'express';
 
-import LancamentoController from './app/controllers/LancamentoController';
-import UserController from './app/controllers/UserController';
-import SessionController from './app/controllers/SessionController';
+import LancamentoController from './app/controllers/LancamentoController.js';
+import UserController from './app/controllers/UserController.js';
+import SessionController from './app/controllers/SessionController.js';
 
-import authMiddleware from './app/middlewares/auth';
+import authMiddleware from './app/middlewares/auth.js';
 
 const routes = new Router();
 

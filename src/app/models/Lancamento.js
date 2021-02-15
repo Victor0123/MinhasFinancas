@@ -1,4 +1,6 @@
-import Sequelize, { Model } from 'sequelize/index.js';
+import Sequelize, { pkg } from 'sequelize';
+const { Model } = pkg
+
 
 class Lancamento extends Model {
   static init(sequelize) {

@@ -1,6 +1,6 @@
 import { Op } from 'sequelize';
 import * as Yup from 'yup';
-import Lancamento from '../models/Lancamento';
+import Lancamento from '../models/Lancamento.js';
 
 class LancamentoController {
   async store(req, res) {

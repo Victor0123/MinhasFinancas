@@ -1,4 +1,4 @@
-import Sequelize, { Model } from 'sequelize';
+import Sequelize, { Model } from 'sequelize/index.js';
 
 class Lancamento extends Model {
   static init(sequelize) {

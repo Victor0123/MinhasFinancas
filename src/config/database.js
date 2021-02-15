@@ -1,4 +1,4 @@
-require('dotenv/config');
+import 'dotenv/config.js';
 
 export default {
   dialect: 'postgres',

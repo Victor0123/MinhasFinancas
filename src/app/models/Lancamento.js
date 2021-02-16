@@ -1,5 +1,4 @@
-import Sequelize from 'sequelize';
-const { Model } = Sequelize
+import Sequelize, { Model } from 'sequelize';
 
 
 class Lancamento extends Model {

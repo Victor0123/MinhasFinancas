@@ -5,7 +5,8 @@
   "author": "Victor André Rossini de Souza <victor.rossini01@hotmail.com>",
   "license": "MIT",
   "scripts": {
-    "dev": "nodemon"
+    "dev": "nodemon",
+    "start": "node"
   },
   "dependencies": {
     "bcryptjs": "^2.4.3",

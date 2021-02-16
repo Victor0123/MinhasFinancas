@@ -1,6 +1,6 @@
-require('dotenv/config');
+import 'dotenv/config.js';
 
-module.exports = {
+export const databaseConfig = {
   dialect: 'postgres',
   host: process.env.DB_HOST,
   port: process.env.DB_PORT,
@@ -12,5 +12,4 @@ module.exports = {
     underscored: true,
     underscoredAll: true,
   },
-  default: databaseConfig
 };

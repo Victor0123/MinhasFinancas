@@ -1,1 +1,1 @@
-release: node_modules/.bin/sequelize db:migrate
+release: rake db:migrate

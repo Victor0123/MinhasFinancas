@@ -13,7 +13,6 @@ class Database {
   }
 
   init() {
-    console.log('dbURL:', databaseConfig);
     this.connection = new Sequelize(databaseConfig);
 
     models

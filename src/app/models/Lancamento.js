@@ -1,6 +1,5 @@
 import Sequelize, { Model } from 'sequelize';
 
-
 class Lancamento extends Model {
   static init(sequelize) {
     super.init(

@@ -31,8 +31,6 @@ class LancamentoController {
     return res.json(lancamento);
   }
 
-
-
   async index(req, res) {
     const p = req.params.data.split('-');
     const ano = parseInt(p[0]);
@@ -44,6 +42,37 @@ class LancamentoController {
 
     return res.json(totalizadores);
   }
+
+  async delete(req, res) {
+    const lancamento = await Lancamento.findByPk(req.params.id);
+
+    if (lancamento.user_id != req.userId) {
+      return res.status(401).json({ error: "Você não pode apagar esse lançamento" })
+    }
+
+    lancamento.destroy();
+
+    await lancamento.save();
+
+    return res.json({ message: "Lançamento deletado com sucesso" });
+  }
+
+  async update(req, res) {
+    const lancamentoAtual = await Lancamento.findByPk(req.params.id);
+
+    if (lancamentoAtual.user_id != req.userId) {
+      return res.status(401).json({ error: "Você não pode alterar esse lançamento" })
+    }
+
+    lancamentoAtual.created_at = new Date();
+
+    await lancamentoAtual.save();
+
+    const lancamento = await lancamentoAtual.update(req.body)
+
+    return res.json(lancamento);
+  }
+
 }
 
 export default new LancamentoController();

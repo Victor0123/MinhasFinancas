@@ -20,4 +20,7 @@ routes.put('/users', UserController.update);
 routes.post('/lancamento', LancamentoController.store);
 routes.get('/lancamentos/:data', LancamentoController.index);
 
+routes.put('/lancamento/:id', LancamentoController.update);
+routes.delete('/lancamento/:id', LancamentoController.delete);
+
 export default routes;

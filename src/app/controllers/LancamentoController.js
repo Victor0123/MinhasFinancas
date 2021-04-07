@@ -73,6 +73,16 @@ class LancamentoController {
     return res.json(lancamento);
   }
 
+  async list(req, res) {
+    const lancamento = await Lancamento.findByPk(req.params.id);
+
+    if (lancamento.user_id != req.userId) {
+      return res.status(401).json({ error: "O lançamento não pertence ao usuario logado" })
+    }
+
+    return res.json(lancamento);
+  }
+
 }
 
 export default new LancamentoController();

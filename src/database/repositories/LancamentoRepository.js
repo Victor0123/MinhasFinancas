@@ -14,7 +14,7 @@ class LancamentoRepository {
       where: {
         user_id: userId,
         data: {
-          [Op.between]: [datainicial, datafinal],
+          [Op.between]: [datainicial.setUTCHours(0), datafinal.setUTCHours(0)],
         },
       },
       attributes: ['id', 'data', 'valor', 'descricao', 'conta', 'tipo'],

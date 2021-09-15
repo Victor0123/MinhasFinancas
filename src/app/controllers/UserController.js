@@ -54,12 +54,15 @@ class UserController {
       confirmPassword: Yup.string().when('password', (password, field) =>
         password ? field.required().oneOf([Yup.ref('password')]) : field
       ),
+      phone: Yup.string()
+        .min(14)
+        .max(14)
     });
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Falha na Validação.' });
     }
 
-    const { email, oldPassword } = req.body;
+    const { email, oldPassword, phone } = req.body;
 
     const user = await User.findByPk(req.userId);
 
@@ -75,12 +78,21 @@ class UserController {
       return res.status(401).json({ error: 'Senha incorreta' });
     }
 
+    if (phone != user.phone_number) {
+      const phoneExists = await User.findOne({ where: { phone_number: phone } });
+
+      if (phoneExists) {
+        return res.status(400).json({ error: 'Número de telefone já cadastrado' });
+      }
+    }
+
     const { id, name } = await user.update(req.body);
 
     return res.json({
       id,
       name,
       email,
+      phone,
     });
   }
 }

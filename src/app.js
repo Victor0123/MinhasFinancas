@@ -15,7 +15,10 @@ class App {
   }
 
   middlewares() {
-    this.server.use(cors({ origin: 'https://minhasfinancas20.herokuapp.com' }));
+    this.server.use(cors({
+      origin: 'https://minhasfinancas20.herokuapp.com',
+      allowedHeaders: 'https://minhasfinancas20.herokuapp.com'
+    }));
     this.server.use(express.json());
   }
 

@@ -11,33 +11,23 @@ class UserController {
       password: Yup.string()
         .required()
         .min(6),
-      phone: Yup.string()
-        .required()
-        .min(14)
-        .max(14)
     });
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Falha na Validação.' });
     }
 
     const userExists = await User.findOne({ where: { email: req.body.email } });
-    const phoneExists = await User.findOne({ where: { phone_number: req.body.phone } });
 
     if (userExists) {
       return res.status(400).json({ error: 'Usuário já existe.' });
     }
 
-    if (phoneExists) {
-      return res.status(400).json({ error: 'Número de telefone já cadastrado' });
-    }
-
-    const { id, name, email, phone } = await User.create(req.body);
+    const { id, name, email } = await User.create(req.body);
 
     return res.json({
       id,
       name,
       email,
-      phone,
     });
   }
 
@@ -54,15 +44,12 @@ class UserController {
       confirmPassword: Yup.string().when('password', (password, field) =>
         password ? field.required().oneOf([Yup.ref('password')]) : field
       ),
-      phone: Yup.string()
-        .min(14)
-        .max(14)
     });
     if (!(await schema.isValid(req.body))) {
       return res.status(400).json({ error: 'Falha na Validação.' });
     }
 
-    const { email, oldPassword, phone } = req.body;
+    const { email, oldPassword } = req.body;
 
     const user = await User.findByPk(req.userId);
 
@@ -78,21 +65,12 @@ class UserController {
       return res.status(401).json({ error: 'Senha incorreta' });
     }
 
-    if (phone != user.phone_number) {
-      const phoneExists = await User.findOne({ where: { phone_number: phone } });
-
-      if (phoneExists) {
-        return res.status(400).json({ error: 'Número de telefone já cadastrado' });
-      }
-    }
-
     const { id, name } = await user.update(req.body);
 
     return res.json({
       id,
       name,
       email,
-      phone,
     });
   }
 }
